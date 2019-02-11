@@ -1,0 +1,11 @@
+git =|= basics =|= git init                    =|= Initialize a repository                            =|= Execute
+git =|= basics =|= git status                  =|= Show status of working tree                        =|= Execute
+git =|= basics =|= git add file.txt             =|= Start tracking file.txt
+git =|= basics =|= git add main.txt            =|= Stage modified file main.txt
+git =|= basics =|= git diff                     =|= Show what's changed but not yet staged
+git =|= basics =|= git commit                  =|= Commit changes
+git =|= basics =|= git commit -a               =|= Stage files and commit
+git =|= basics =|= git mv main.txt file.txt     =|= Rename main.txt to file.txt
+git =|= basics =|= git fetch develop           =|= Pull data from remote 'develop' without merging
+git =|= basics =|= git pull origin develop     =|= Fetch and merge branch 'develop' from origin
+git =|= basics =|= git clone url               =|= Create local copy of remote repository at 'url'

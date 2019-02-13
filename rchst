@@ -66,15 +66,11 @@ triggerChtAction () {
 	sellected_action=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $9}')
 	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $5}')
 
-	echo $sellected_action $sellected_command
-
 	if [[ "$sellected_action" == *$ACTIONS_KEY* ]]; then
 	  xdotool $sellected_action $sellected_command
 	elif [[ "$sellected_action" == *$ACTIONS_TYPE* ]]; then
 		xdotool $sellected_action "$sellected_command"
 	fi
-
-
 }
 
 main () {

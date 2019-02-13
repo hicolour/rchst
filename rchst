@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CHTS_FILES=~/chst/*
+CHTS_FILES=~/.chst/*
 
 ACTIONS_KEY=key
 ACTIONS_TYPE=type
@@ -8,7 +8,7 @@ ACTIONS_TYPE=type
 # rofi -i -font "ypn envypn 13"
 
 run_rofi () {
-	rofi -i -font "ypn envypn 13" \
+	rofi -i \
   -separator-style none -columns 1 -bw 0 \
        -line-margin 0 -line-padding 2 \
       -hide-scrollbar \

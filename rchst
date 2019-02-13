@@ -85,7 +85,13 @@ declare -a chts_raw
 
 for f in $CHTS_FILES
 do
-  readarray -t chts_tmp < $f
+	if [[ "$f" == *"README.md"* ]]; then
+		echo "Ignore README"
+	elif [[ "$f" == *"LICENSE"* ]]; then
+		echo "Ignore LICENSE"
+	else
+		readarray -t chts_tmp < $f
+	fi
 	chts_raw=("${chts_raw[@]}" "${chts_tmp[@]}")
 done
 

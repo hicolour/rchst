@@ -4,9 +4,12 @@ CHTS_FILES=./chst/*
 ACTIONS_KEY=key
 ACTIONS_TYPE=type
 
+# Remove font
+# rofi -i -font "ypn envypn 13"
+
 run_rofi () {
 	rofi -i -font "ypn envypn 13" \
-  -separator-style none -font "ypn envypn 13" -columns 1 -bw 0 \
+  -separator-style none -columns 1 -bw 0 \
        -line-margin 0 -line-padding 2 \
       -hide-scrollbar \
       -color-window "#222222, #222222, #b1b4b3" \

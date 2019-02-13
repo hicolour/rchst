@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CHTS_FILES=./chst/*
+CHTS_FILES=~/chst/*
 
 ACTIONS_KEY=key
 ACTIONS_TYPE=type

@@ -1,5 +1,41 @@
 #!/usr/bin/env bash
-CHTS_FILES=~/.chst/*
+#---------------------------------------------------------------------------
+#--                                                                       --
+#--
+#--    _|_|_|      _|_|_|  _|    _|    _|_|_|  _|_|_|_|_|
+#--    _|    _|  _|        _|    _|  _|            _|
+#--    _|_|_|    _|        _|_|_|_|    _|_|        _|
+#--    _|    _|  _|        _|    _|        _|      _|
+#--    _|    _|    _|_|_|  _|    _|  _|_|_|        _|
+#--                                                                       --
+#---------------------------------------------------------------------------
+
+#---------------------------------------------------------------------------
+#-- TODO
+#---------------------------------------------------------------------------
+
+# GENERAL
+# *
+
+# NON CHST SPECIFIC
+# *
+
+# ACTIVE
+# * Fix tabulation after the command - spacing between end of command and description is not fixed
+
+# DEFER (should do but uncertain how to solve after initial cursory review, so will defer till have more time to research)
+# *
+
+#DONE
+# * Priotitize personal chst files loading ( ~/.pchst ) over general ( ~/.chst )
+
+# TESTED/REJECTED/WONTFIX
+
+
+
+CHTS_DIRECTORY=~
+CHTS_FILES=.chst
+PERSONAL_CHTS_FILES=.pchst
 
 ACTIONS_KEY=key
 ACTIONS_TYPE=type
@@ -8,7 +44,7 @@ ACTIONS_TYPE=type
 # rofi -i -font "ypn envypn 13"
 
 run_rofi () {
-	rofi -i \
+	rofi -i  -font "ypn envypn 13"\
   -separator-style none -columns 1 -bw 0 \
        -line-margin 0 -line-padding 2 \
       -hide-scrollbar \
@@ -75,13 +111,23 @@ triggerChtAction () {
 
 main () {
 declare -a chts_raw
+declare -a chts_files
 
-for f in $CHTS_FILES
+#!/usr/bin/env bash
+# CHTS_DIRECTORY=~/
+# CHTS_FILES=.chst/*
+# PERSONAL_CHTS_FILES=.pchst/*
+
+for f in $CHTS_DIRECTORY/{$PERSONAL_CHTS_FILES,$CHTS_FILES}/*
 do
 	if  ! { [[ "$f" == *"LICENSE"* ]] || [[ "$f" == *"README"* ]] || [[ "$f" == *"\."* ]] ; }  then
-		readarray -t chts_tmp < $f
+    fileName=$(basename -- "$f")
+		inarray=$(echo ${chts_files[@]} | grep -o $fileName | wc -l)
+		if [[ $inarray -eq 0 ]]; then
+			chts_files+=($fileName)
+			readarray -t chts_tmp < $f
+		fi
 	fi
-
 	chts_raw=("${chts_raw[@]}" "${chts_tmp[@]}")
 done
 

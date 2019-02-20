@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-CHTS_FILES=~/.chst/*
+CHTS_FILES_DIRECTORY=~/
+CHTS_FILES_DIRECTORY_PATTERN=".*chst"
 
 ACTIONS_KEY=key
 ACTIONS_TYPE=type
@@ -76,8 +77,14 @@ triggerChtAction () {
 main () {
 declare -a chts_raw
 
-for f in $CHTS_FILES
+#!/usr/bin/env bash
+CHTS_FILES_DIRECTORY=~/.chst/*
+CHTS_FILES_DIRECTORY_PATTERN=".*chst"
+#for dir in $(find salford_* -type d);do
+
+for f in $(find $CHTS_FILES_DIRECTORY/$CHTS_FILES_DIRECTORY_PATTERN -maxdepth 0 -mindepth 0 -type d);
 do
+	echo reading file $f
 	if  ! { [[ "$f" == *"LICENSE"* ]] || [[ "$f" == *"README"* ]] || [[ "$f" == *"\."* ]] ; }  then
 		readarray -t chts_tmp < $f
 	fi

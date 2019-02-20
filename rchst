@@ -40,12 +40,20 @@ PERSONAL_CHTS_FILES=.pchst
 ACTIONS_KEY=key
 ACTIONS_TYPE=type
 
+#RCHST_DOTFILE=~/.rchst
+
+# if [ -f "$RCHST_DOTFILE" ]
+# then
+#  . $RCHST_DOTFILE
+# fi
+
+
+
 # Remove font
 # rofi -i -font "ypn envypn 13"
 
 run_rofi () {
-	rofi -i  -font "ypn envypn 13"\
-  -separator-style none -columns 1 -bw 0 \
+	rofi -i -separator-style none -columns 1 -bw 0 \
        -line-margin 0 -line-padding 2 \
       -hide-scrollbar \
       -color-window "#222222, #222222, #b1b4b3" \
@@ -54,6 +62,8 @@ run_rofi () {
       -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" \
       -kb-row-select "Tab" -kb-row-tab "" \
   -lines 15 -width 1000 -dmenu -p "> " "$@"
+
+
 }
 
 addCht () {

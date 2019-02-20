@@ -37,7 +37,6 @@ CHTS_DIRECTORY=~
 CHTS_FILES=.chst
 PERSONAL_CHTS_FILES=.pchst
 
-
 ACTIONS_KEY=key
 ACTIONS_TYPE=type
 
@@ -129,10 +128,8 @@ declare -a chts_files
 # CHTS_FILES=.chst/*
 # PERSONAL_CHTS_FILES=.pchst/*
 
-
 for f in $CHTS_DIRECTORY/{$PERSONAL_CHTS_FILES,$CHTS_FILES}/*
 do
-	echo reading file $f
 	if  ! { [[ "$f" == *"LICENSE"* ]] || [[ "$f" == *"README"* ]] || [[ "$f" == *"\."* ]] ; }  then
     fileName=$(basename -- "$f")
 		inarray=$(echo ${chts_files[@]} | grep -o $fileName | wc -l)

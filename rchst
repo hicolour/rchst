@@ -89,6 +89,7 @@ addCht () {
 	action=$(run_rofi -mesg "Insert action type (key or type)")
 	if [[ $? -eq 1 ]]; then
 		exit
+
 	fi
 
  run_rofi -mesg "Follwoing item will be added: $category $subcategory $command $description $action"
@@ -137,13 +138,12 @@ do
 		if [[ $inarray -eq 0 ]]; then
 			chts_files+=($fileName)
 			readarray -t chts_tmp < $f
-			echo "Reading from:"$f
+			#readarray -t chts_tmp < <(echo "$f" | grep '^\s*$')
 		fi
 	fi
 	chts_raw=("${chts_raw[@]}" "${chts_tmp[@]}")
 done
 
-echo ${chts_raw[@]}
 
 for i in "${!chts_raw[@]}"; do
 	chts_output_tmp=$chts_output_tmp"\n"${i}"=|="${chts_raw[$i]}

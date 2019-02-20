@@ -1,16 +1,60 @@
 #!/usr/bin/env bash
-CHTS_FILES_DIRECTORY=~/
-CHTS_FILES_DIRECTORY_PATTERN=".*chst"
+#---------------------------------------------------------------------------
+#--                                                                       --
+#--
+#--    _|_|_|      _|_|_|  _|    _|    _|_|_|  _|_|_|_|_|
+#--    _|    _|  _|        _|    _|  _|            _|
+#--    _|_|_|    _|        _|_|_|_|    _|_|        _|
+#--    _|    _|  _|        _|    _|        _|      _|
+#--    _|    _|    _|_|_|  _|    _|  _|_|_|        _|
+#--                                                                       --
+#---------------------------------------------------------------------------
+
+#---------------------------------------------------------------------------
+#-- TODO
+#---------------------------------------------------------------------------
+
+# GENERAL
+# *
+
+# NON CHST SPECIFIC
+# *
+
+# ACTIVE
+# * Fix tabulation after the command - spacing between end of command and description is not fixed
+
+# DEFER (should do but uncertain how to solve after initial cursory review, so will defer till have more time to research)
+# *
+
+#DONE
+# * Priotitize personal chst files loading ( ~/.pchst ) over general ( ~/.chst )
+
+# TESTED/REJECTED/WONTFIX
+
+
+
+CHTS_DIRECTORY=~
+CHTS_FILES=.chst
+PERSONAL_CHTS_FILES=.pchst
+
 
 ACTIONS_KEY=key
 ACTIONS_TYPE=type
+
+#RCHST_DOTFILE=~/.rchst
+
+# if [ -f "$RCHST_DOTFILE" ]
+# then
+#  . $RCHST_DOTFILE
+# fi
+
+
 
 # Remove font
 # rofi -i -font "ypn envypn 13"
 
 run_rofi () {
-	rofi -i \
-  -separator-style none -columns 1 -bw 0 \
+	rofi -i -separator-style none -columns 1 -bw 0 \
        -line-margin 0 -line-padding 2 \
       -hide-scrollbar \
       -color-window "#222222, #222222, #b1b4b3" \
@@ -19,6 +63,8 @@ run_rofi () {
       -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" \
       -kb-row-select "Tab" -kb-row-tab "" \
   -lines 15 -width 1000 -dmenu -p "> " "$@"
+
+
 }
 
 addCht () {
@@ -76,19 +122,25 @@ triggerChtAction () {
 
 main () {
 declare -a chts_raw
+declare -a chts_files
 
 #!/usr/bin/env bash
-CHTS_FILES_DIRECTORY=~/.chst/*
-CHTS_FILES_DIRECTORY_PATTERN=".*chst"
-#for dir in $(find salford_* -type d);do
+# CHTS_DIRECTORY=~/
+# CHTS_FILES=.chst/*
+# PERSONAL_CHTS_FILES=.pchst/*
 
-for f in $(find $CHTS_FILES_DIRECTORY/$CHTS_FILES_DIRECTORY_PATTERN -maxdepth 0 -mindepth 0 -type d);
+
+for f in $CHTS_DIRECTORY/{$PERSONAL_CHTS_FILES,$CHTS_FILES}/*
 do
 	echo reading file $f
 	if  ! { [[ "$f" == *"LICENSE"* ]] || [[ "$f" == *"README"* ]] || [[ "$f" == *"\."* ]] ; }  then
-		readarray -t chts_tmp < $f
+    fileName=$(basename -- "$f")
+		inarray=$(echo ${chts_files[@]} | grep -o $fileName | wc -l)
+		if [[ $inarray -eq 0 ]]; then
+			chts_files+=($fileName)
+			readarray -t chts_tmp < $f
+		fi
 	fi
-
 	chts_raw=("${chts_raw[@]}" "${chts_tmp[@]}")
 done
 
@@ -97,7 +149,7 @@ for i in "${!chts_raw[@]}"; do
 done
 
 selection=$(echo -e $chts_output_tmp | awk -F"=/|=" ' {  print $1"\t"$3"\t"$5"\t"$7"\t\t"$9"\t"$11}' | run_rofi -kb-custom-1 "${new_chst}" -kb-custom-2 "${list_chst_subcat}" -kb-custom-3 "${delete_chst}" -kb-custom-4 "${edit_chst}" -mesg "Enter to select a chst item. Alt+n to create a new one.
-Edit a chst item with Alt+e. Remove one with Alt+d. Search for subcatgories with Alt+t.")
+Edit a chst item with Alt+e. Remove one with Alt+d. Search for subcatgories with Alt+t>>>>>>> 314198372eb842efeab1d328e52a189541fdec5b.")
 
 val=$?
 

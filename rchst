@@ -120,8 +120,8 @@ triggerChtAction () {
 }
 
 main () {
-declare -a chts_raw
-declare -a chts_files
+declare -a chts_raw=()
+declare -a chts_files=()
 
 #!/usr/bin/env bash
 # CHTS_DIRECTORY=~/
@@ -130,16 +130,20 @@ declare -a chts_files
 
 for f in $CHTS_DIRECTORY/{$PERSONAL_CHTS_FILES,$CHTS_FILES}/*
 do
+	declare -a chts_tmp=()
 	if  ! { [[ "$f" == *"LICENSE"* ]] || [[ "$f" == *"README"* ]] || [[ "$f" == *"\."* ]] ; }  then
     fileName=$(basename -- "$f")
 		inarray=$(echo ${chts_files[@]} | grep -o $fileName | wc -l)
 		if [[ $inarray -eq 0 ]]; then
 			chts_files+=($fileName)
 			readarray -t chts_tmp < $f
+			echo "Reading from:"$f
 		fi
 	fi
 	chts_raw=("${chts_raw[@]}" "${chts_tmp[@]}")
 done
+
+echo ${chts_raw[@]}
 
 for i in "${!chts_raw[@]}"; do
 	chts_output_tmp=$chts_output_tmp"\n"${i}"=|="${chts_raw[$i]}

@@ -37,9 +37,9 @@ CHTS_DIRECTORY=~
 CHTS_FILES=.chst
 PERSONAL_CHTS_FILES=.pchst
 
-ACTIONS_KEY=key
-ACTIONS_TYPE=type
-
+ACTION_KEY=key
+ACTION_TYPE=type
+ACTION_TYPE=input+key
 #RCHST_DOTFILE=~/.rchst
 
 # if [ -f "$RCHST_DOTFILE" ]
@@ -89,6 +89,7 @@ addCht () {
 	action=$(run_rofi -mesg "Insert action type (key or type)")
 	if [[ $? -eq 1 ]]; then
 		exit
+
 	fi
 
  run_rofi -mesg "Follwoing item will be added: $category $subcategory $command $description $action"
@@ -112,16 +113,16 @@ triggerChtAction () {
 	sellected_action=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $9}')
 	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $5}')
 
-	if [[ "$sellected_action" == *$ACTIONS_KEY* ]]; then
-	  xdotool $sellected_action $sellected_command
-	elif [[ "$sellected_action" == *$ACTIONS_TYPE* ]]; then
+	if [[ "$sellected_action" == *$ACTION_KEY* ]]; then
+	  xdotool $sellected_action --clearmodifiers $sellected_command
+	elif [[ "$sellected_action" == *$ACTION_TYPE* ]]; then
 		xdotool $sellected_action "$sellected_command"
 	fi
 }
 
 main () {
-declare -a chts_raw
-declare -a chts_files
+declare -a chts_raw=()
+declare -a chts_files=()
 
 #!/usr/bin/env bash
 # CHTS_DIRECTORY=~/
@@ -130,12 +131,14 @@ declare -a chts_files
 
 for f in $CHTS_DIRECTORY/{$PERSONAL_CHTS_FILES,$CHTS_FILES}/*
 do
+	declare -a chts_tmp=()
 	if  ! { [[ "$f" == *"LICENSE"* ]] || [[ "$f" == *"README"* ]] || [[ "$f" == *"\."* ]] ; }  then
     fileName=$(basename -- "$f")
 		inarray=$(echo ${chts_files[@]} | grep -o $fileName | wc -l)
 		if [[ $inarray -eq 0 ]]; then
 			chts_files+=($fileName)
 			readarray -t chts_tmp < $f
+			#readarray -t chts_tmp < <(echo "$f" | grep '^\s*$')
 		fi
 	fi
 	chts_raw=("${chts_raw[@]}" "${chts_tmp[@]}")

@@ -39,7 +39,7 @@ PERSONAL_CHTS_FILES=.pchst
 
 ACTION_KEY=key
 ACTION_TYPE=type
-ACTION_TYPE=input+key
+ACTION_INPUT_KEY=input+key
 #RCHST_DOTFILE=~/.rchst
 
 # if [ -f "$RCHST_DOTFILE" ]
@@ -61,7 +61,7 @@ run_rofi () {
       -color-active "#222222, #E356A7, #222222, #007763, #b1b4b3" \
       -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" \
       -kb-row-select "Tab" -kb-row-tab "" \
-  -lines 15 -width 1000 -dmenu -p "> " "$@"
+  -lines 15 -width 1100 -dmenu -p "> " "$@"
 
 
 }
@@ -114,9 +114,9 @@ triggerChtAction () {
 	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $5}')
 
 	if [[ "$sellected_action" == *$ACTION_KEY* ]]; then
-	  xdotool $sellected_action --clearmodifiers $sellected_command
+		xdotool $sellected_action --clearmodifiers "$sellected_command";
 	elif [[ "$sellected_action" == *$ACTION_TYPE* ]]; then
-		xdotool $sellected_action "$sellected_command"
+		xdotool $sellected_action "$sellected_command";
 	fi
 }
 

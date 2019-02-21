@@ -141,11 +141,19 @@ do
 	chts_raw=("${chts_raw[@]}" "${chts_tmp[@]}")
 done
 
+# Remove emtpy lines
+for i in "${!chts_raw[@]}"; do
+		if  [[ -z "${chts_raw[$i]}" ]]; then
+			unset chts_raw[$i]
+		fi
+done
+
+# Add global indexing (for all the chst)
 for i in "${!chts_raw[@]}"; do
 	chts_output_tmp=$chts_output_tmp"\n"${i}"=|="${chts_raw[$i]}
 done
 
-selection=$(echo -e $chts_output_tmp | awk -F"=/|=" ' {  print $1"\t"$3"\t"$5"\t"$7"\t\t"$9"\t"$11}' | run_rofi -kb-custom-1 "${new_chst}" -kb-custom-2 "${list_chst_subcat}" -kb-custom-3 "${delete_chst}" -kb-custom-4 "${edit_chst}" -mesg "Enter to select a chst item. Alt+n to create a new one.
+selection=$(echo -e $chts_output_tmp | column -s\=\|= -t | run_rofi -kb-custom-1 "${new_chst}" -kb-custom-2 "${list_chst_subcat}" -kb-custom-3 "${delete_chst}" -kb-custom-4 "${edit_chst}" -mesg "Enter to select a chst item. Alt+n to create a new one.
 Edit a chst item with Alt+e. Remove one with Alt+d. Search for subcatgories with Alt+t.")
 
 val=$?

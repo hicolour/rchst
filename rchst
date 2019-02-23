@@ -110,8 +110,8 @@ triggerChtAction () {
   chts_raw=$2
 
 	cht_id=$(echo $selection | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')
-	sellected_action=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $9}')
-	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $5}')
+	sellected_action=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $9}' |  awk '{$1=$1};1' )
+	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $5}' | awk '{$1=$1};1' )
 
 	if [[ "$sellected_action" == *$ACTION_KEY* ]]; then
 		xdotool $sellected_action --clearmodifiers "$sellected_command";

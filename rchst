@@ -48,7 +48,7 @@ ACTION_KEY=key
 ACTION_TYPE=type
 ACTION_INPUT_KEY=input+key
 ACTION_INPUT_type=input+type
-s
+
 #RCHST_DOTFILE=~/.rchst
 
 # if [ -f "$RCHST_DOTFILE" ]

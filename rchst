@@ -21,12 +21,13 @@
 # *
 
 # ACTIVE
-# * Fix tabulation after the command - spacing between end of command and description is not fixed
+# * Add support for input+key & input+type
 
 # DEFER (should do but uncertain how to solve after initial cursory review, so will defer till have more time to research)
 # *
 
 #DONE
+# * Fix tabulation after the command - spacing between end of command and description is not fixed
 # * Priotitize personal chst files loading ( ~/.pchst ) over general ( ~/.chst )
 
 # TESTED/REJECTED/WONTFIX
@@ -40,6 +41,7 @@ PERSONAL_CHTS_FILES=.pchst
 ACTION_KEY=key
 ACTION_TYPE=type
 ACTION_INPUT_KEY=input+key
+ACTION_INPUT_type=input+type
 #RCHST_DOTFILE=~/.rchst
 
 # if [ -f "$RCHST_DOTFILE" ]

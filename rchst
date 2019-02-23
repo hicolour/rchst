@@ -15,13 +15,19 @@
 #---------------------------------------------------------------------------
 
 # GENERAL
-# *
+# * Add .chst item
+# * Delete .chst item
+# * Edit .chst item
+# * Add .chst
+# * Add support for input+key & input+type
+# * Add list filtering by .chst file == primary category (maybe with tab)
+# * Add rchst dotfile
 
 # NON CHST SPECIFIC
 # *
 
 # ACTIVE
-# * Add support for input+key & input+type
+
 
 # DEFER (should do but uncertain how to solve after initial cursory review, so will defer till have more time to research)
 # *
@@ -42,6 +48,7 @@ ACTION_KEY=key
 ACTION_TYPE=type
 ACTION_INPUT_KEY=input+key
 ACTION_INPUT_type=input+type
+s
 #RCHST_DOTFILE=~/.rchst
 
 # if [ -f "$RCHST_DOTFILE" ]

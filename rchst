@@ -15,18 +15,25 @@
 #---------------------------------------------------------------------------
 
 # GENERAL
-# *
+# * Add .chst item
+# * Delete .chst item
+# * Edit .chst item
+# * Add .chst
+# * Add support for input+key & input+type
+# * Add list filtering by .chst file == primary category (maybe with tab)
+# * Add rchst dotfile
 
 # NON CHST SPECIFIC
 # *
 
 # ACTIVE
-# * Fix tabulation after the command - spacing between end of command and description is not fixed
+
 
 # DEFER (should do but uncertain how to solve after initial cursory review, so will defer till have more time to research)
 # *
 
 #DONE
+# * Fix tabulation after the command - spacing between end of command and description is not fixed
 # * Priotitize personal chst files loading ( ~/.pchst ) over general ( ~/.chst )
 
 # TESTED/REJECTED/WONTFIX
@@ -40,7 +47,12 @@ PERSONAL_CHTS_FILES=.pchst
 ACTION_KEY=key
 ACTION_TYPE=type
 ACTION_INPUT_KEY=input+key
+<<<<<<< HEAD
 ACTION_INPUT_TYPE=input+type
+=======
+ACTION_INPUT_type=input+type
+
+>>>>>>> e1cc7afcb57acb73be220aea2ec19e51dc7149c0
 #RCHST_DOTFILE=~/.rchst
 
 # if [ -f "$RCHST_DOTFILE" ]
@@ -111,8 +123,8 @@ triggerChtAction () {
   chts_raw=$2
 
 	cht_id=$(echo $selection | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')
-	sellected_action=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $9}')
-	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $5}')
+	sellected_action=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $9}' |  awk '{$1=$1};1' )
+	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $5}' | awk '{$1=$1};1' )
 
 	if [[ "$sellected_action" == *$ACTION_KEY* ]]; then
 		xdotool $ACTION_KEY --clearmodifiers "$sellected_command";

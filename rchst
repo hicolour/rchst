@@ -40,6 +40,7 @@ PERSONAL_CHTS_FILES=.pchst
 ACTION_KEY=key
 ACTION_TYPE=type
 ACTION_INPUT_KEY=input+key
+ACTION_INPUT_TYPE=input+type
 #RCHST_DOTFILE=~/.rchst
 
 # if [ -f "$RCHST_DOTFILE" ]
@@ -114,9 +115,9 @@ triggerChtAction () {
 	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $5}')
 
 	if [[ "$sellected_action" == *$ACTION_KEY* ]]; then
-		xdotool $sellected_action --clearmodifiers "$sellected_command";
+		xdotool $ACTION_KEY --clearmodifiers "$sellected_command";
 	elif [[ "$sellected_action" == *$ACTION_TYPE* ]]; then
-		xdotool $sellected_action "$sellected_command";
+		xdotool $ACTION_TYPE "$sellected_command";
 	fi
 }
 

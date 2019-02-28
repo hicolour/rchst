@@ -47,12 +47,7 @@ PERSONAL_CHTS_FILES=.pchst
 ACTION_KEY=key
 ACTION_TYPE=type
 ACTION_INPUT_KEY=input+key
-<<<<<<< HEAD
 ACTION_INPUT_TYPE=input+type
-=======
-ACTION_INPUT_type=input+type
-
->>>>>>> e1cc7afcb57acb73be220aea2ec19e51dc7149c0
 #RCHST_DOTFILE=~/.rchst
 
 # if [ -f "$RCHST_DOTFILE" ]

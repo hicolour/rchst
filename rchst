@@ -118,8 +118,9 @@ triggerChtAction () {
   chts_raw=$2
 
 	cht_id=$(echo $selection | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')
-	sellected_action=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $9}' |  awk '{$1=$1};1' )
-	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F"=/|=" 'NF == 2 { $0 = $0 "No tag" }; {  print $5}' | awk '{$1=$1};1' )
+
+	sellected_action=$(echo ${chts_raw[$cht_id]} | awk -F'[=][|][=]' '{ print $5 }' |  awk '{$1=$1};1')
+	sellected_command=$(echo ${chts_raw[$cht_id]} | awk -F'[=][|][=]' '{ print $3 }' |  awk '{$1=$1};1')
 
 	if [[ "$sellected_action" == *$ACTION_KEY* ]]; then
 		xdotool $ACTION_KEY --clearmodifiers "$sellected_command";
@@ -164,7 +165,7 @@ for i in "${!chts_raw[@]}"; do
 	chts_output_tmp=$chts_output_tmp"\n"${i}"=|="${chts_raw[$i]}
 done
 
-selection=$(echo -e $chts_output_tmp | column -s\=\|= -t | run_rofi -kb-custom-1 "${new_chst}" -kb-custom-2 "${list_chst_subcat}" -kb-custom-3 "${delete_chst}" -kb-custom-4 "${edit_chst}" -mesg "Enter to select a chst item. Alt+n to create a new one.
+selection=$(echo -e $chts_output_tmp | sed -e 's_=|=_\t_g' | column -s $'\t' -t | run_rofi -kb-custom-1 "${new_chst}" -kb-custom-2 "${list_chst_subcat}" -kb-custom-3 "${delete_chst}" -kb-custom-4 "${edit_chst}" -mesg "Enter to select a chst item. Alt+n to create a new one.
 Edit a chst item with Alt+e. Remove one with Alt+d. Search for subcatgories with Alt+t.")
 
 val=$?

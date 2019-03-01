@@ -165,8 +165,9 @@ for i in "${!chts_raw[@]}"; do
 	chts_output_tmp=$chts_output_tmp"\n"${i}"=|="${chts_raw[$i]}
 done
 
-selection=$(echo -e $chts_output_tmp | sed -e 's_=|=_\t_g' | column -s $'\t' -t | run_rofi -kb-custom-1 "${new_chst}" -kb-custom-2 "${list_chst_subcat}" -kb-custom-3 "${delete_chst}" -kb-custom-4 "${edit_chst}" -mesg "Enter to select a chst item. Alt+n to create a new one.
-Edit a chst item with Alt+e. Remove one with Alt+d. Search for subcatgories with Alt+t.")
+selection=$(echo -e $chts_output_tmp | sed -e 's_=|=_\t_g' | column -s $'\t' -t | run_rofi -kb-custom-1 "${new_chst}" -kb-custom-2 "${list_chst_subcat}" -kb-custom-3 "${delete_chst}" -kb-custom-4 "${edit_chst}")
+
+#-mesg "Enter to select a chst item. Alt+n to create a new one. Edit a chst item with Alt+e. Remove one with Alt+d. Search for subcatgories with Alt+t."
 
 val=$?
 

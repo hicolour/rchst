@@ -10,7 +10,7 @@ __What rchst is not?__
 * advanced documentation format browser like [zeal](https://github.com/zealdocs/zeal)
 
 
-![Sample](images/screen.png)
+![Sample](images/sample.png)
 
 
 

@@ -1,0 +1,86 @@
+git =|= basics   =|= git init                                 =|= Initialize a repository                               =|= type
+git =|= basics   =|= git status                               =|= Show status of working tree                           =|= type
+git =|= basics   =|= git add [$file]                           =|= Start tracking [file]                                  =|= input+type
+git =|= basics   =|= git add [$file]                           =|= Stage modified [file]                                   =|= input+type
+git =|= basics   =|= git diff                                  =|= Show what's changed but not yet stagedt               =|= type
+git =|= basics   =|= git commit                               =|= Commit changest                                       =|= type
+git =|= basics   =|= git commit -a                            =|= Stage files and committ                                =|= type
+git =|= basics   =|= git mv [$fiele1] [$file2]                  =|= Rename [fiele1] to [file2]                              =|= input+type
+git =|= basics   =|= git fetch [$br]                          =|= Pull data from remote [br] without merging            =|= input+type
+git =|= basics   =|= git pull origin [$br]                    =|= Fetch and merge branch [$br] from origin              =|= input+type
+git =|= basics   =|= git clone [$url]                         =|= Create local copy of remote repository at [$url]      =|= input+type
+
+
+git =|= branch   =|= git branch                               =|= Show current branches                                 =|= type
+git =|= branch   =|= git push origin [$br]                    =|= Push [br] branch to origin server                     =|= input+type
+git =|= branch   =|= git push staging develop:master          =|= Push develop branch to remote staging master          =|= input+type
+git =|= branch   =|= git branch -v                            =|= Show last commit on all branches                      =|= type
+git =|= branch   =|= git checkout [$br]                       =|= Switch to branch [br]                                 =|= input+type
+git =|= branch   =|= git branch [$br]                         =|= Create new branch called [br]                         =|= input+type
+git =|= branch   =|= git checkout -b [$br]                    =|= Create branch [br] and switch to it                   =|= input+type
+git =|= branch   =|= git branch -d [$br]                      =|= Delete branch [br]                                    =|= input+type
+git =|= branch   =|= git branch --no-merged                   =|= Show branches not yet merged into current branch      =|= type
+git =|= branch   =|= git branch -D [$br]                      =|= Force delete branch [br] not yet merged               =|= input+type
+git =|= branch   =|= git checkout -b [$br1] origin/[$br2]     =|= Create local branch [br1] based off origin [br2]       =|= input+type
+git =|= branch   =|= git checkout --track origin/[$br]        =|= Create tracking branch [br] based off origin           =|= input+type
+git =|= branch   =|= git push origin :[$br]                   =|= Delete remote branch [br] from origin                 =|= input+type
+
+git =|= merge    =|= git mergetool                            =|= Use graphical merge tool                              =|= type
+git =|= merge    =|= git commit                               =|= Finalize merge after resolving conflicts               =|= type
+git =|= merge    =|= git merge [$br]                          =|= Merge branch [br] with current branch                 =|= input+type
+git =|= merge    =|= git add [$file]                           =|= Mark [file] as resolved after merge                    =|= input+type
+git =|= merge    =|= git rebase [$br]                         =|= Rebase changes made on current branch over [br]       =|= input+type
+git =|= merge    =|= git rebase [$br1] [$br2]                 =|= Rebase [br1] onto [br2] without checking it out       =|= input+type
+git =|= merge    =|= git rebase --onto [$br1] [$br2] [$br3]   =|= Rebase [br1] onto [br3] made from branch [br2]        =|= input+type
+
+git =|= remote   =|= git rebase --onto [$br1] [$br2] [$br3]   =|= Rebase [br1] onto [br3] made from branch [br2]        =|= input+type
+git =|= remote   =|= git remote                               =|= Show remote servers you have configured                =|= type
+git =|= remote   =|= git remote -v                            =|= Show remote servers with URL displayed                =|= type
+git =|= remote   =|= git remote add [$s] [$url]               =|= Show remote servers with URL displayed                =|= input+type
+git =|= remote   =|= git remote rename [$s1] [$s2]            =|= Rename remote [s1] to [s2]                            =|= input+type
+git =|= remote   =|= git remote rm [$s]                       =|= Remove remote [s]                                     =|= input+type
+git =|= remote   =|= git remote show [$s]                     =|= Show info about remote [s]                            =|= input+type
+
+git =|= log      =|= git log                                  =|= Show commit logs                                      =|= type
+git =|= log      =|= git log -p 2                             =|= Show last 2 commits with diffs                         =|= type
+git =|= log      =|= git log --stat                           =|= Show commit logs with stats                           =|= type
+git =|= log      =|= git log --pretty=oneline                 =|= Show commit logs one per line                         =|= type
+git =|= log      =|= git log --graph                          =|= Show commit logs with ascii graph                     =|= type
+git =|= log      =|= git log --since=1.week                   =|= Show commit log for the last week                     =|= type
+git =|= log      =|= git blame -L [$1-9],[$1-9] [$file]        =|= Show prev commits for each lines [..]-[..] of [$file]  =|= input+type
+
+git =|= undoing  =|= git rm --cached [$file]                   =|= Remove [file] from staging but keep in working         =|= input+type
+git =|= undoing  =|= git checkout -- [$file]                   =|= Discard changes to [file]                              =|= input+type
+git =|= undoing  =|= git reset HEAD [$file]                    =|= Unstage [file]                                         =|= input+type
+
+git =|= rew hist =|= git commit --amend                       =|= Replace last commit with whats in staging             =|= type
+git =|= rew hist =|= git commit --amend                       =|= Modify last commit message                            =|= type
+git =|= rew hist =|= git rebase -i HEAD~3                     =|= Make changes to the last 3 commits                    =|= type
+
+git =|= log      =|= git tag                                  =|= Show available tags                                   =|= type
+git =|= log      =|= git tag -a [$tag]                        =|= Create annotated [tag]                                =|= input+type
+git =|= log      =|= git show [$tag]                          =|= Show info for [tag]                                   =|= input+type
+git =|= log      =|= git tag -s [$tag]                        =|= Create signed [tag]                                   =|= input+type
+git =|= log      =|= git tag [$tag]                           =|= Create lightweight [tag]                              =|= input+type
+git =|= log      =|= git tag -v [$tag]                        =|= Verify signed [tag]                                   =|= input+type
+git =|= log      =|= git tag -a [$tag] [$commit]              =|= Tag previous [commit] with [tag]                      =|= input+type
+git =|= log      =|= git push [$s] [$tag]                     =|= Push [tag] to [s]                                     =|= input+type
+git =|= log      =|= git push [$s] --tags                     =|= Push all local tags to [s]                            =|= input+type
+
+git =|= stash    =|= git stash                                =|= Stash changes without committing                      =|= type
+git =|= stash    =|= git stash list                           =|= Show stores stashes                                   =|= type
+git =|= stash    =|= git stash apply                          =|= Reapply most recent stash                             =|= type
+git =|= stash    =|= git stash apply stash@[$[1-9]]           =|= Reapply most recent stash [1-9]                       =|= input+type
+git =|= stash    =|= git stash apply --index                  =|= Reapply stashed changes along with staged changes     =|= type
+git =|= stash    =|= git stash drop stash@{[$[1-9]]}          =|= Drop stash [1-9]                                      =|= input+type
+git =|= stash    =|= git stash pop                            =|= Apply most recent stash and drop from stack           =|= type
+git =|= stash    =|= git stash branch [$br]                   =|= Create branch [br] from stash                         =|= input+type
+git =|= stash    =|= git stash clear                          =|= Delete all stashes                                    =|= type
+git =|= stash    =|= git diff --staged                         =|= Show what's staged but not yet committed              =|= type
+git =|= stash    =|= git diff --check                          =|= Check for whitespace errors before committing         =|= type
+
+git =|= bisect   =|= git bisect start                         =|= Start binary search of commits to find bad commit      =|= type
+git =|= bisect   =|= git bisect bad                           =|= Mark current commit as broken during bisect           =|= type
+git =|= bisect   =|= git bisect good [$tag]                   =|= Mark [tag] as last known good commit during bisect    =|= input+type
+git =|= bisect   =|= git bisect reset                         =|= Reset HEAD when finished with bisect                   =|= type
+git =|= bisect   =|= git run [$test_script]                   =|= Run [$test_script] on each commit during bisect       =|= input+type

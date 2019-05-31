@@ -1,6 +1,13 @@
 rchst
 ======
 
+__Status__
+Not yeat released but functional & usable - targeting 1st realse end of June 19'
+
+Things to to:
+* reduce no rofi customization properties
+* release official pkg - aur/deb
+
 __What rchst is?__
  * __browser & launcher__ for programmable & automated cheatsheets/cheatfiles - __[.chst](https://github.com/hicolour/.chst)__ actions model defintion that can used be both for key combinations or typing
 
@@ -44,7 +51,7 @@ rchst alternatives
 .chst browsers & launchers:
 Planned:
 - [dchst](https://github.com/hicolour/dchst) __launcher style browser__ - just a tiny [dmenu](https://github.com/DaveDavenport/rofi) extension
-- [fchst](https://github.com/hicolour/fchst) __console style browser__ - just tiny command line [demnu](https://tools.suckless.org/dmenu/) extension
+- [fchst](https://github.com/hicolour/fchst) __console style browser__ - just tiny command line [fzf](https://github.com/junegunn/fzf) extension
 
 
 Documenenation helepers:

@@ -6,7 +6,7 @@ __Dependency__
  * [xdotool](https://www.semicomplete.com/projects/xdotool/)  
 
 __Status__
-Not yeat released but functional & usable - targeting 1st realse end of June 19'
+Not yeat released but functional & usable
 
 Things to to:
 * reduce no rofi customization properties

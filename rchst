@@ -61,17 +61,17 @@ ACTION_INPUT_TYPE=input+type
 # rofi -i -font "ypn envypn 13"
 
 run_rofi () {
-	rofi -i -separator-style none -columns 1 -bw 0 \
+	rofi -i -theme helper -separator-style none -columns 1 -bw 0 \
        -line-margin 0 -line-padding 2 \
       -hide-scrollbar \
       -color-window "#222222, #222222, #b1b4b3" \
       -color-normal "#262626, #b1b4b3, #262626, #262626, #42E66C" \
       -color-active "#222222, #E356A7, #222222, #007763, #b1b4b3" \
       -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" \
-      -kb-row-select "Tab" -kb-row-tab "" \
+       -kb-row-tab "" \
   -lines 15 -width 1500 -dmenu -p "> " "$@"
 
-
+#-kb-row-select "Tab"
 }
 
 addCht () {
